@@ -11,6 +11,7 @@ class Database:
         # экземпляры модели затабазы
         self.students = students
 
+
     def create_new_student(self,full_name:str, birthday:'str'):
         # дата рождения соответствует нужному формату
         try:
