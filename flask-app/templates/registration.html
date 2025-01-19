@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="article">
+    <div class="article-title">
+        <h1 class="article-title">{{title}}</h1>
+    </div>
+
+    <div class="article-body">
+        <form id='registration-form' action="/registration" method="post" enctype="multipart/form-data">
+            <input type="text" name='username' placeholder="username">
+            <input type="password" name='password' placeholder="password">
+            <input type="email" name='email' placeholder="email">
+            <button type="submit">Зарегистрировать</button>
+        </form>
+
+        <script>
+            const form = document.querySelector('form');
+
+            form.addEventListener('submit', (event) => {
+              event.preventDefault();
+
+              // Получаем данные из формы
+              const formData = new FormData(form);
+
+              // Отправляем POST запрос с данными формы
+              fetch('/registration', {
+                method: 'POST',
+                body: formData,
+              })
+              .then(response => response.json())
+              .then(data => {
+                console.log('Данные отправлены на сервер', data);
+                document.getElementById('registration-form').reset();
+                alert("Вы успешно зарегистрированы!");
+              })
+              .catch(error => {
+                console.error('Ошибка при отправке данных', error);
+              });
+            });
+        </script>
+
+    </div>
+
+</div>
+{% endblock %}
+
+

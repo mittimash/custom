@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="article">
+    <div class="article-title">
+        <h1 class="article-title">{{title}}</h1>
+    </div>
+
+    <div class="article-body">
+        <form id='registration-form' action="/registration" method="post" enctype="multipart/form-data">
+            <input type="test" name='title' placeholder="title">
+            <textarea name="content" id="content" cols="30" rows="10"></textarea>
+            <button type="submit">Опубликовать</button>
+        </form>
+
+        <script>
+            const form = document.querySelector('form');
+            form.addEventListener('submit', (event) => {
+              event.preventDefault();
+              const formData = new FormData(form);
+              fetch('/add_news', {
+                method: 'POST',
+                body: formData,
+              })
+              .then(response => response.json())
+              .then(data => {
+                location.reload();;
+              })
+              .catch(error => {
+                console.error('Ошибка при отправке данных', error);
+              });
+            });
+        </script>
+
+    </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,18 @@
+.content {
+  margin: 0 auto;
+  max-width: 1000px;
+  padding: 20px;
+}
+
+.article {
+  margin-bottom: 20px;
+}
+
+.article-title {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.article-body {
+  font-size: 16px;
+}
